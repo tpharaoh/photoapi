@@ -2,9 +2,11 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiSubresource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -27,6 +29,7 @@ class Tag
     /**
      * @ORM\Column(type="string", length=10)
      * @Groups("view")
+     * @ApiFilter(SearchFilter::class)
      */
     private $name;
 
@@ -40,6 +43,8 @@ class Tag
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Blog", mappedBy="tags")
+     * @ApiSubresource(maxDepth=1)
+     * @Groups("view")
      */
     private $blogs;
 
