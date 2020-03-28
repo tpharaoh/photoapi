@@ -1,0 +1,9 @@
+ version: '3' 
+ services:
+  database:
+    image: postgres:11-alpine 
+    environment:
+      POSTGRES_USER: hanna
+      POSTGRES_PASSWORD: hanna 
+      POSTGRESDB: hanna
+    ports: [5432]
